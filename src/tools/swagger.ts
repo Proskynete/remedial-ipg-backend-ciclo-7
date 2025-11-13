@@ -8,9 +8,25 @@ const options: swaggerJsdoc.Options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Node API Skeleton",
-      description: "Node API Skeleton",
+      title: "Remedial IPG Backend - Ciclo 7",
+      description: "",
       version,
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+        description: "Local developer server",
+      },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+          description: "Ingresa el token JWT obtenido del endpoint de login",
+        },
+      },
     },
   },
   apis: ["./src/routes/*.ts", "./src/models/*.ts"],
@@ -19,8 +35,8 @@ const options: swaggerJsdoc.Options = {
 export const swaggerSpec = swaggerJsdoc(options);
 
 const swaggerDocs = (app: Express): void => {
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  app.get("/docs.json", (_: Request, res: Response) => {
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.get("/api-docs.json", (_: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json");
     res.json(swaggerSpec);
   });
