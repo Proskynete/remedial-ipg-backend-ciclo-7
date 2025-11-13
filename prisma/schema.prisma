@@ -1,0 +1,60 @@
+// Prisma Schema for Products API
+// Defines data models and database configuration
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Can be changed to "mysql" or "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User Model
+// Stores user information with authentication
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String // Password hashed with bcrypt
+  firstName String
+  lastName  String? // Optional
+  role      Role     @default(USER)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationship: A user can create many products
+  products Product[]
+
+  @@map("users") // Database table name
+}
+
+// Enum for user roles
+enum Role {
+  USER // Regular user
+  ADMIN // Administrator with full permissions
+  MODERATOR // Moderator with intermediate permissions
+}
+
+// Product Model
+// Represents products in the system
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+  stock       Int      @default(0)
+  category    String
+  image       String? // Product image URL
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationship: Each product belongs to a user
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([category]) // Index for category searches
+  @@index([userId]) // Index for user searches
+  @@map("products") // Database table name
+}
