@@ -12,6 +12,10 @@
     "test": "cross-env PORT=5054 jest --forceExit --detectOpenHandles --runInBand --verbose",
     "test:coverage": "npm run test -- --coverage",
     "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "unset DATABASE_URL && npx prisma migrate dev",
+    "prisma:studio": "npx prisma studio",
+    "prisma:seed": "node prisma/seed.ts",
     "prepare": "husky"
   },
   "dependencies": {
