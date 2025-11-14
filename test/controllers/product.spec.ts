@@ -132,9 +132,7 @@ describe("Product Controller", () => {
       const mockProducts = [mockProduct];
       mockPrismaProduct.findMany.mockResolvedValue(mockProducts);
 
-      const response = await request(app)
-        .get("/api/v1/products")
-        .expect(200);
+      const response = await request(app).get("/api/v1/products").expect(200);
 
       expect(response.body.success).toBe(true);
       expect(response.body.count).toBe(1);
@@ -178,9 +176,7 @@ describe("Product Controller", () => {
     it("should return 500 when database error occurs", async () => {
       mockPrismaProduct.findMany.mockRejectedValue(new Error("Database error"));
 
-      const response = await request(app)
-        .get("/api/v1/products")
-        .expect(500);
+      const response = await request(app).get("/api/v1/products").expect(500);
 
       expect(response.body.success).toBe(false);
     });
@@ -210,7 +206,9 @@ describe("Product Controller", () => {
     });
 
     it("should return 500 when database error occurs", async () => {
-      mockPrismaProduct.findUnique.mockRejectedValue(new Error("Database error"));
+      mockPrismaProduct.findUnique.mockRejectedValue(
+        new Error("Database error")
+      );
 
       const response = await request(app)
         .get("/api/v1/products/product-123")

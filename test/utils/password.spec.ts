@@ -3,7 +3,11 @@
  * Tests for password hashing and validation functions
  */
 
-import { comparePassword, hashPassword, validatePassword } from "../../src/utils/password";
+import {
+  comparePassword,
+  hashPassword,
+  validatePassword,
+} from "../../src/utils/password";
 
 describe("Password Utils", () => {
   describe("hashPassword", () => {

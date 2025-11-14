@@ -5,6 +5,15 @@
 
 import { Role } from "@prisma/client";
 
+import {
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+  getProductById,
+  permanentlyDeleteProduct,
+  updateProduct,
+} from "../../src/services/product";
+
 // Mock prisma before importing services
 const mockPrismaProduct = {
   findUnique: jest.fn(),
@@ -28,15 +37,6 @@ jest.mock("../../src/utils/prisma", () => ({
   connectDB: jest.fn(),
   disconnectDB: jest.fn(),
 }));
-
-import {
-  createProduct,
-  deleteProduct,
-  getAllProducts,
-  getProductById,
-  permanentlyDeleteProduct,
-  updateProduct,
-} from "../../src/services/product";
 
 describe("Product Service", () => {
   beforeEach(() => {

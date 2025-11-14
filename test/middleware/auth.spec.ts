@@ -3,8 +3,8 @@
  * Tests for authenticate and authorize middleware
  */
 
-import { NextFunction, Request, Response } from "express";
 import { Role } from "@prisma/client";
+import { NextFunction, Request, Response } from "express";
 
 import { authenticate, authorize } from "../../src/middleware/auth";
 import { generateToken } from "../../src/utils/jwt";
@@ -157,10 +157,7 @@ describe("Auth Middleware", () => {
     it("should authorize user with one of multiple allowed roles", () => {
       (mockRequest as any).userRole = Role.MODERATOR;
 
-      const authorizeMiddleware = authorize([
-        Role.ADMIN,
-        Role.MODERATOR,
-      ]);
+      const authorizeMiddleware = authorize([Role.ADMIN, Role.MODERATOR]);
       authorizeMiddleware(
         mockRequest as Request,
         mockResponse as Response,

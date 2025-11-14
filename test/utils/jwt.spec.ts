@@ -5,7 +5,11 @@
 
 import { Role } from "@prisma/client";
 
-import { extractTokenFromHeader, generateToken, verifyToken } from "../../src/utils/jwt";
+import {
+  extractTokenFromHeader,
+  generateToken,
+  verifyToken,
+} from "../../src/utils/jwt";
 
 describe("JWT Utils", () => {
   const mockPayload = {

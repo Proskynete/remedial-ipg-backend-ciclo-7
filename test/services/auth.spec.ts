@@ -5,6 +5,11 @@
 
 import { Role } from "@prisma/client";
 
+import {
+  getUserProfile,
+  loginUser,
+  registerUser,
+} from "../../src/services/auth";
 import { hashPassword } from "../../src/utils/password";
 
 // Mock prisma before importing services
@@ -30,8 +35,6 @@ jest.mock("../../src/utils/prisma", () => ({
   connectDB: jest.fn(),
   disconnectDB: jest.fn(),
 }));
-
-import { getUserProfile, loginUser, registerUser } from "../../src/services/auth";
 
 describe("Auth Service", () => {
   beforeEach(() => {
