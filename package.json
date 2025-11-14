@@ -2,7 +2,6 @@
   "name": "remedial-ipg-backend-ciclo-7",
   "version": "1.0.0",
   "description": "Proyecto de Backend para el Ciclo 7 del IPG",
-  "private": true,
   "scripts": {
     "start": "node ./dist/server.js",
     "dev": "ts-node-dev ./src/server.ts",
@@ -11,9 +10,8 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "cross-env PORT=5054 jest --forceExit --detectOpenHandles --runInBand --verbose",
     "test:coverage": "npm run test -- --coverage",
-    "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
     "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "unset DATABASE_URL && npx prisma migrate dev",
+    "prisma:migrate": "npx prisma migrate dev",
     "prisma:studio": "npx prisma studio",
     "prisma:seed": "node prisma/seed.ts",
     "prepare": "husky"
