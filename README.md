@@ -1006,8 +1006,6 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
 
 ### Notas de Seguridad
 
-⚠️ **NUNCA** commitees el archivo `.env` a Git. Ya está incluido en `.gitignore`.
-
 ✅ En producción:
 - Usa un `JWT_SECRET` largo y aleatorio
 - Configura `NODE_ENV=production`
@@ -1024,38 +1022,3 @@ Para información más detallada, consulta los siguientes documentos:
 - **[DATABASE.md](./documentation/DATABASE.md)** - Modelos, relaciones y queries de la base de datos
 - **[DOCKER.md](./documentation/DOCKER.md)** - Comandos y configuración de Docker
 - **[ERRORS.md](./documentation/ERRORS.md)** - Solución de problemas comunes y debugging
-
----
-
-## 📄 Licencia
-
-Este proyecto es parte de un ejercicio académico para **IPG - Ciclo 7**.
-
----
-
-## 👤 Autor
-
-Desarrollado como parte del **Remedial IPG Backend - Ciclo 7**
-
----
-
-## 🤝 Contribuir
-
-Si encuentras algún bug o tienes sugerencias:
-
-1. Abre un **Issue** describiendo el problema
-2. Haz un **Fork** del repositorio
-3. Crea una **rama** para tu feature (`git checkout -b feature/nueva-caracteristica`)
-4. **Commit** tus cambios (`git commit -m '✨ feat: add nueva característica'`)
-5. **Push** a la rama (`git push origin feature/nueva-caracteristica`)
-6. Abre un **Pull Request**
-
----
-
-## ⭐ Agradecimientos
-
-Gracias por usar esta API. Si te resulta útil, ¡considera darle una estrella! ⭐
-
----
-
-**¿Preguntas o sugerencias?** Abre un issue en el repositorio.
