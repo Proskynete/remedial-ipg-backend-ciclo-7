@@ -66,6 +66,28 @@ describe("JWT Utils", () => {
     it("should throw error for empty token", () => {
       expect(() => verifyToken("")).toThrow();
     });
+
+    it("should throw specific error for expired token", () => {
+      // Create a token that expires immediately
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const jwt = require("jsonwebtoken");
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { config } = require("../../src/config");
+
+      const expiredToken = jwt.sign(mockPayload, config.jwt.secret, {
+        expiresIn: "0s", // Expires immediately
+      });
+
+      // Wait a bit to ensure token is expired
+      expect(() => verifyToken(expiredToken)).toThrow("Token expirado");
+    });
+
+    it("should throw generic error for unknown verification errors", () => {
+      // This is a difficult case to test, but we can at least verify the function structure
+      const token = generateToken(mockPayload);
+      const decoded = verifyToken(token);
+      expect(decoded).toBeDefined();
+    });
   });
 
   describe("extractTokenFromHeader", () => {

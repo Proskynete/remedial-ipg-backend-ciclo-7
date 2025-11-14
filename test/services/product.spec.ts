@@ -5,6 +5,7 @@
 
 import { Role } from "@prisma/client";
 
+// Import after mocking
 import {
   createProduct,
   deleteProduct,
@@ -15,6 +16,14 @@ import {
 } from "../../src/services/product";
 
 // Mock prisma before importing services
+const mockPrismaUser = {
+  findUnique: jest.fn(),
+  findMany: jest.fn(),
+  create: jest.fn(),
+  update: jest.fn(),
+  delete: jest.fn(),
+};
+
 const mockPrismaProduct = {
   findUnique: jest.fn(),
   findMany: jest.fn(),
@@ -25,14 +34,12 @@ const mockPrismaProduct = {
 
 jest.mock("../../src/utils/prisma", () => ({
   prisma: {
-    user: {
-      findUnique: jest.fn(),
-      findMany: jest.fn(),
-      create: jest.fn(),
-      update: jest.fn(),
-      delete: jest.fn(),
+    get user() {
+      return mockPrismaUser;
     },
-    product: mockPrismaProduct,
+    get product() {
+      return mockPrismaProduct;
+    },
   },
   connectDB: jest.fn(),
   disconnectDB: jest.fn(),

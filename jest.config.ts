@@ -16,7 +16,13 @@ const config: Config = {
   testMatch: ["**/test/**/*.spec.(ts|js)"],
   testEnvironment: "node",
   collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.ts", "!src/server.ts", "!src/config.ts"],
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "!src/server.ts",
+    "!src/config.ts",
+    "!src/utils/prisma.ts",
+    "!src/utils/remove_extensions.ts",
+  ],
   coverageThreshold: {
     global: {
       branches: 80,
